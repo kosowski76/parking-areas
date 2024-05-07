@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\User\User" table="user" repository-class="App\Infrastructure\Doctrine\UserRepository">
+
+        <id name="id" type="uuid" column="id" />
+        <field name="username" column="username" length="255" nullable="false" />
+        <field name="email" column="email" length="180" nullable="false" />
+        <field name="password" column="password" length="255" nullable="false" />
+        <field name="roles" column="roles" type="json" nullable="true"/>
+        <field name="isActive" column="isActive" length="500" nullable="true" />
+        <field name="createdAt" column="created_at" type="datetime" nullable="true" />
+
+        <unique-constraints>
+            <unique-constraint columns="email" name="email" />
+        </unique-constraints>
+
+    </entity>
+
+</doctrine-mapping>

@@ -1,0 +1,84 @@
+<?php
+namespace App\Domain\ParkingArea;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Uid\Uuid;
+
+class ParkingArea
+{
+    protected Uuid $id;
+    protected $name;
+    protected $capacity;
+    public Collection $vehicles;
+
+    function __construct($name, $capacity)
+    {
+        $this->id = Uuid::v7();
+        $this->name = $name;
+        $this->capacity = $capacity;
+        $this->vehicles = new ArrayCollection();
+    }
+
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
+    public function setId(Uuid $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCapacity()
+    {
+        return $this->capacity;
+    }
+
+    /**
+     * @param mixed $capacity
+     */
+    public function setCapacity($capacity): void
+    {
+        $this->capacity = $capacity;
+    }
+
+    public function getVehicles(): array
+    {
+        return $this->vehicles;
+    }
+
+    public function setVehicles(array $vehicles): void
+    {
+        $this->vehicles = $vehicles;
+    }
+
+    public function parkVehicle($vehicle)
+    {
+        if(count($this->vehicles) >= $this->capacity) {
+            echo "Parking Area has not empty slot". PHP_EOL;
+        } else {
+            $this->vehicles[] = $vehicle;
+            echo $vehicle->name . " parked ". PHP_EOL;
+        }
+    }
+}
