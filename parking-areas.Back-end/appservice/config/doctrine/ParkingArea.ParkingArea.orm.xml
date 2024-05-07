@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\ParkingArea\ParkingArea" table="parking_area" repository-class="App\Infrastructure\Doctrine\ParkingAreaRepository">
+
+        <id name="id" type="uuid" column="id" />
+        <field name="name" column="name" length="255" nullable="false" />
+        <field name="capacity" type="integer" column="capacity" nullable="false" />
+
+        <one-to-many field="vehicles" target-entity="App\Domain\Vehicle\Vehicle" mapped-by="ParkingArea">
+            <cascade><cascade-persist /><cascade-remove /></cascade>
+        </one-to-many>
+
+        <unique-constraints>
+            <unique-constraint columns="name" name="name" />
+        </unique-constraints>
+
+    </entity>
+
+</doctrine-mapping>
