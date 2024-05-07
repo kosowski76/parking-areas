@@ -1,7 +1,5 @@
    # The Parking Areas
 
-    <i>- here you will find the <b>READMEpl.md</b> file for the Polish language version.</i>
-    * ![readme_en local view](./READMEpl.md)
 
    * [Technologies](#technologies)
    * [Setup](#setup)
