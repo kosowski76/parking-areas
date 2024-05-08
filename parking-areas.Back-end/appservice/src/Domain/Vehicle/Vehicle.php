@@ -6,14 +6,22 @@ use Symfony\Component\Uid\Uuid;
 
 class Vehicle
 {
-    public Uuid $id;
-    public string $name;
+    protected Uuid $id;
     protected ParkingArea $parkingArea;
+    protected string $name;
 
     function __construct(string $name,
-        ParkingArea $parkingArea) {
+                         ParkingArea $parkingArea) {
         $this->name = $name;
         $this->parkingArea = $parkingArea;
+    }
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+    public function setId(Uuid $id): void
+    {
+        $this->id = $id;
     }
     /**
      * @return mixed

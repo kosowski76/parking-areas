@@ -9,6 +9,8 @@
         <id name="id" type="uuid" column="id" />
         <field name="name" column="name" length="255" nullable="false" />
         <field name="capacity" type="integer" column="capacity" nullable="false" />
+        <field name="weekdayRate" column="weekday_rate" type="float" scale="5" precision="2" />
+        <field name="weekendRate" column="weekend_rate" type="float" scale="5" precision="2" />
 
         <one-to-many field="vehicles" target-entity="App\Domain\Vehicle\Vehicle" mapped-by="ParkingArea">
             <cascade><cascade-persist /><cascade-remove /></cascade>

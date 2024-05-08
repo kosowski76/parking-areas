@@ -8,13 +8,14 @@ class MainController
 {
     public function index(): JsonResponse
     {
-        $result = array();
+       // $content = array();
 
-        $result[] = 'Welcome';
-        $result[] = 'Dashboard';
+        $content = ["Welcome on Parking Area", "Dashboard"];
+
+        $result = json_encode($content);
 
 
-        return new JsonResponse($result, Response::HTTP_OK);
+        return new JsonResponse($content, Response::HTTP_OK);
     }
 
 }
