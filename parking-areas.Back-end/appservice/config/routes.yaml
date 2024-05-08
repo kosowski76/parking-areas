@@ -17,12 +17,12 @@ api_user_create:
     methods: POST
     controller: App\Controller\User\UserController::registerUserApi
 
-#api_user_create:
-#    path: /api/users
-#    methods: POST
-#    controller: App\Controller\User\AdminController::registerUserApi
-
 api_admin_dashboard:
     path: /api/parking-area
     methods: GET
     controller: App\Controller\User\AdminController::index
+
+api_admin_create_area:
+    path: /api/parking-area
+    controller: App\Controller\User\AdminController::createArea
+    methods: POST
