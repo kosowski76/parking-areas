@@ -84,12 +84,12 @@ class ParkingArea
         $this->capacity = $capacity;
     }
 
-    public function getVehicles(): array
+    public function getVehicles(): Collection
     {
         return $this->vehicles;
     }
 
-    public function setVehicles(array $vehicles): void
+    public function setVehicles(Collection $vehicles): void
     {
         $this->vehicles = $vehicles;
     }

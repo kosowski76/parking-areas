@@ -1,7 +1,10 @@
 <?php
 namespace App\Domain\User;
 
+use AllowDynamicProperties;
+use App\Domain\Vehicle\Vehicle;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Exception;
@@ -9,15 +12,16 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+#[AllowDynamicProperties] class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    private Uuid $id;
-    private string $username;
-    private string $email;
-    private string $password;
-    private $roles = [];
-    private bool $isActive;
-    private DateTime $createdAt;
+    protected Uuid $id;
+    protected string $username;
+    protected string $email;
+    protected string $password;
+    protected Collection $vehicles;
+    protected $roles = [];
+    protected bool $isActive;
+    protected DateTimeInterface $createdAt;
 
     function __construct()
     {
@@ -59,6 +63,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getVehicle(): Vehicle
+    {
+        return $this->vehicle;
+    }
+
+    public function setVehicle(Vehicle $vehicle): void
+    {
+        $this->vehicle = $vehicle;
+    }
     public function getPassword(): string
     {
         return $this->password;
@@ -69,11 +83,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): DateTimeInterface
     {
         return $this->createdAt;
     }
-    public function setCreatedAt(DateTime $createdAt): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 

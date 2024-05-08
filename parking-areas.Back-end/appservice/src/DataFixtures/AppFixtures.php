@@ -29,6 +29,10 @@ class AppFixtures extends Fixture
         $this->parkingAreaRepository = $parkingAreaRepository;
         $this->userRepository = $userRepository;
     }
+
+    /**
+     * @throws Exception
+     */
     public function load(ObjectManager $manager): void
     {
         $userValues = array(
@@ -130,14 +134,28 @@ class AppFixtures extends Fixture
 
         $vehicleValues = array(
             [
-                'Id'            => '8F252521-BB9C-F25F-B326-054F4DEA8AC5',
+                'Id'            => '3C252521-BB9C-455B-C47A-054F4DEA8AC5',
+                'UserId'        => '018F2522-5E4D-7C2A-BB9C-E8C0AEA8A77E',
                 'ParkingAreaId' => '8F252521-0AEA-F25F-B326-054F4DEA8A77',
-                'Name'          => 'DZA-T56A'
+                'Name'          => 'DZA-T56A',
+                'TimeStart'     => '2024-05-03 13:04:24',
+                'ParkingTime'   => 1
             ],
             [
                 'Id'            => 'F4DE2522-5E4D-7C2A-0AEA-E8C0AEA8F2A7',
+                'UserId'        => '018F2522-5E4D-7C2A-BB9C-E8C0AEA8A77E',
                 'ParkingAreaId' => '8F252521-0AEA-F25F-B326-054F4DEA8A77',
-                'Name'          => 'NO-3D54'
+                'Name'          => 'NO-3D54',
+                'TimeStart'     => '2024-04-29 10:15:59',
+                'ParkingTime'   => 2
+            ],
+            [
+                'Id'            => 'A4C22522-5E4D-7C2A-0AEA-C7A0AEA8F52A',
+                'UserId'        => '018F2522-5E4D-7C2A-BB9C-E8C0AEA8A77E',
+                'ParkingAreaId' => 'F4DE2522-5E4D-7C2A-BB9C-E8C0AEA8F252',
+                'Name'          => 'NO-3D54',
+                'TimeStart'     => '2024-05-02 09:12:13',
+                'ParkingTime'   => 2
             ]);
 
         foreach($vehicleValues as $value)
@@ -150,18 +168,35 @@ class AppFixtures extends Fixture
             } catch (Exception $exception)
             {
                 throw new Exception('No this Parking Area in database'.PHP_EOL.
+                    'Error message: '.$exception->getMessage());
+            }
+            /***
+             * get User ***/
+            try {
+                $user = $this->userRepository->findOneBy(
+                    ['id' => Uuid::fromString($value['UserId'])]);
+            } catch (Exception $exception)
+            {
+                throw new Exception('No this User in database'.PHP_EOL.
                     'Error message: '.$exception->getMessage()); }
 
-            $vehicle = new Vehicle($value['Name'], $parkingArea);
+            $vehicle = new Vehicle();
+
             $parkingAreaEntity = Uuid::fromString($value['Id']);
             $vehicle->setId($parkingAreaEntity);
-            $vehicle->setName($value['Name']);
             $vehicle->setParkingArea($parkingArea);
+            $vehicle->setName($value['Name']);
+            $vehicle->setUser($user);
+
+            $parkingDate = new DateTime($value['TimeStart']);
+            $vehicle->setCreatedAt($parkingDate);
+            $vehicle->setParkingTime($value['ParkingTime']);
 
             $manager->persist($vehicle);
             $manager->flush();
 
             unset($vehicle);
+            unset($user);
         }
     }
 }
