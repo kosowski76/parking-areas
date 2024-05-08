@@ -2,9 +2,11 @@
 namespace App\Infrastructure\Doctrine;
 
 use App\Domain\ParkingArea\ParkingArea;
+use App\Domain\ParkingArea\ParkingAreaRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+
 class ParkingAreaRepository extends ServiceEntityRepository implements ParkingAreaRepositoryInterface
 {
     protected EntityManagerInterface $entityManager;

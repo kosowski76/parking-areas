@@ -6,6 +6,7 @@ use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
 
 class UserController
 {
@@ -16,7 +17,8 @@ class UserController
         $this->createUser = $createUser;
     }
 
-    public function index(Request $request): JsonResponse
+    #[Route('/api/users', name: 'api_user_create', methods: ['POST'])]
+    public function registerUserApi(Request $request): JsonResponse
     {
         $userArray = json_decode($request->getContent(), true);
 

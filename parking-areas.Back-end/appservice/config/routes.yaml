@@ -15,4 +15,14 @@ api_login_check:
 api_user_create:
     path: /api/users
     methods: POST
-    controller: App\Controller\User\UserController::index
+    controller: App\Controller\User\UserController::registerUserApi
+
+#api_user_create:
+#    path: /api/users
+#    methods: POST
+#    controller: App\Controller\User\AdminController::registerUserApi
+
+api_admin_dashboard:
+    path: /api/parking-area
+    methods: GET
+    controller: App\Controller\User\AdminController::index

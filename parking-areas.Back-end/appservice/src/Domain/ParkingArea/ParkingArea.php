@@ -10,7 +10,9 @@ class ParkingArea
     protected Uuid $id;
     protected $name;
     protected $capacity;
-    public Collection $vehicles;
+    protected float $weekdayRate;
+    protected float $weekendRate;
+    protected Collection $vehicles;
 
     function __construct($name, $capacity)
     {
@@ -52,6 +54,26 @@ class ParkingArea
     public function getCapacity()
     {
         return $this->capacity;
+    }
+
+    public function getWeekdayRate(): float
+    {
+        return $this->weekdayRate;
+    }
+
+    public function setWeekdayRate(float $weekdayRate): void
+    {
+        $this->weekdayRate = $weekdayRate;
+    }
+
+    public function getWeekendRate(): float
+    {
+        return $this->weekendRate;
+    }
+
+    public function setWeekendRate(float $weekendRate): void
+    {
+        $this->weekendRate = $weekendRate;
     }
 
     /**
