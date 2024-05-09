@@ -4,7 +4,9 @@ namespace App\Controller\User;
 use App\Application\Handler\ParkingArea\CreateParkingAreaHandler;
 use App\Application\Handler\ParkingArea\ListParkingAreaHandler;
 use App\Application\Handler\User\CreateUserHandler;
+use App\Domain\ParkingArea\ParkingArea;
 use App\Domain\ParkingArea\ParkingAreaRepositoryInterface;
+use App\Domain\Vehicle\Vehicle;
 use App\Domain\Vehicle\VehicleRepositoryInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,17 +21,19 @@ class AdminController extends AbstractController
 {
     protected CreateParkingAreaHandler $createParkingAreaHandler;
     protected ListParkingAreaHandler $listParkingHandler;
-//    protected VehicleRepositoryInterface $vehicleRepository;
+    protected VehicleRepositoryInterface $vehicleRepository;
 
     protected Security $security;
 
     public function __construct(
         CreateParkingAreaHandler $createParkingAreaHandler,
         ListParkingAreaHandler $listParkingHandler,
+        VehicleRepositoryInterface $vehicleRepository,
         Security $security)
     {
         $this->security = $security;
         $this->listParkingHandler = $listParkingHandler;
+        $this->vehicleRepository = $vehicleRepository;
         $this->createParkingAreaHandler = $createParkingAreaHandler;
     }
 
@@ -50,7 +54,7 @@ class AdminController extends AbstractController
                 'weekdayRate' => $parkingArea->getWeekdayRate(),
                 'weekendRate' => $parkingArea->getWeekendRate(),
                 // check how many vehicle
-            //    'vehicle' => $this->hasParkingAreaVehicles()
+                'vehicles' => $this->hasParkingAreaVehicles($parkingArea)
             ];
         }
 
@@ -75,13 +79,29 @@ class AdminController extends AbstractController
         return new JsonResponse('Parking Area has been made', Response::HTTP_CREATED);
     }
 
-
-    protected function hasParkingAreaVehicles()
+    protected function hasParkingAreaVehicles(ParkingArea $parkingArea): array
     {
         /*
          * enumerating cars in the parking lot depends
          * on the method of checking parking space occupancy, e.g. proximity sensor
          */
+        $allVehicles = array();
+        $vehicles = array();
+
+        $vehicles = $this->vehicleRepository->findBy([
+           'parkingArea' => $parkingArea->getId()
+        ]);
+
+        /** @var Vehicle $vehicle */
+        foreach ($vehicles as $vehicle) {
+            $allVehicles[] = [
+                'name' => $vehicle->getName(),
+                'data' => $vehicle->getCreatedAt(),
+                'parkingTime' => $vehicle->getParkingTime()
+            ];
+        }
+
+        return $allVehicles;
     }
 
 }

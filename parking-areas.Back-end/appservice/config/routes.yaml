@@ -17,6 +17,11 @@ api_user_create:
     methods: POST
     controller: App\Controller\User\UserController::registerUserApi
 
+api_user_parking:
+    path: /api/user/parking
+    methods: POST
+    controller: App\Controller\User\ParkingVehicleController::index
+
 api_admin_dashboard:
     path: /api/parking-area
     methods: GET

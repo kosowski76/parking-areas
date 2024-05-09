@@ -30,6 +30,11 @@ security:
             stateless: true
             provider: app_user_provider
             jwt: ~
+        api_user:
+            pattern: ^/api/user
+            stateless: true
+            provider: app_user_provider
+            jwt: ~
         #api:
         #    pattern: ^/api
         #    stateless: true
@@ -49,7 +54,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        #- { path: ^/api/user, roles: PUBLIC_ACCESS, methods: [POST] }
+        - { path: ^/api/user, roles: ROLE_USER, methods: [POST] }
         - { path: ^/api/user, roles: ROLE_USER, methods: [GET, PUT] }
         - { path: ^/api/user, roles: ROLE_ADMIN, methods: [DELETE] }
         - { path: ^/api/users, roles: PUBLIC_ACCESS }

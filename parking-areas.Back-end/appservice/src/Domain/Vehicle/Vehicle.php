@@ -2,18 +2,21 @@
 namespace App\Domain\Vehicle;
 
 use App\Domain\ParkingArea\ParkingArea;
+use App\Domain\User\User;
+use DateTime;
+use DateTimeInterface;
 use Symfony\Component\Uid\Uuid;
 
 class Vehicle
 {
     protected Uuid $id;
-    protected ParkingArea $parkingArea;
     protected string $name;
+    protected User $user;
+    protected ParkingArea $parkingArea;
+    protected DateTimeInterface $createdAt;
+    protected float $parkingTime;
 
-    function __construct(string $name,
-                         ParkingArea $parkingArea) {
-        $this->name = $name;
-        $this->parkingArea = $parkingArea;
+    function __construct() {
     }
     public function getId(): Uuid
     {
@@ -23,20 +26,6 @@ class Vehicle
     {
         $this->id = $id;
     }
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-    /**
-     * @param mixed $name
-     */
-    public function setName($name): void
-    {
-        $this->name = $name;
-    }
     public function getParkingArea(): ParkingArea
     {
         return $this->parkingArea;
@@ -45,4 +34,43 @@ class Vehicle
     {
         $this->parkingArea = $parkingArea;
     }
+    public function getName()
+    {
+        return $this->name;
+    }
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
+    }
+
+    public function getCreatedAt(): DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeInterface $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getParkingTime(): float
+    {
+        return $this->parkingTime;
+    }
+
+    public function setParkingTime(float $parkingTime): void
+    {
+        $this->parkingTime = $parkingTime;
+    }
+
 }

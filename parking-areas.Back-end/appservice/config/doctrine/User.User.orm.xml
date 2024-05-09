@@ -10,9 +10,17 @@
         <field name="username" column="username" length="255" nullable="false" />
         <field name="email" column="email" length="180" nullable="false" />
         <field name="password" column="password" length="255" nullable="false" />
+        
         <field name="roles" column="roles" type="json" nullable="true"/>
         <field name="isActive" column="isActive" length="500" nullable="true" />
         <field name="createdAt" column="created_at" type="datetime" nullable="true" />
+
+        <one-to-many field="vehicles" target-entity="App\Domain\Vehicle\Vehicle" mapped-by="user">
+            <cascade>
+                <cascade-persist />
+                <cascade-remove />
+            </cascade>
+        </one-to-many>
 
         <unique-constraints>
             <unique-constraint columns="email" name="email" />

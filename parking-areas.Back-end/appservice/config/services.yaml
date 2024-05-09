@@ -32,3 +32,4 @@ services:
     App\Domain\ParkingArea\ParkingAreaRepositoryInterface: '@App\Infrastructure\Doctrine\ParkingAreaRepository'
     App\Domain\Vehicle\VehicleRepositoryInterface: '@App\Infrastructure\Doctrine\VehicleRepository'
     App\Domain\BankAccount\FirmBankAccountRepositoryInterface: '@App\Infrastructure\Doctrine\FirmBankAccountRepository'
+    App\Infrastructure\Services\FetchCurrencyInterface: '@App\Infrastructure\Services\FetchCurrency'

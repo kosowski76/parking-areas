@@ -7,12 +7,21 @@
     <entity name="App\Domain\Vehicle\Vehicle" table="vehicle" repository-class="App\Infrastructure\Doctrine\VehicleRepository">
 
         <id name="id" type="uuid" column="id"  />
-        <field name="name" column="name" length="255" nullable="false" />
+
         <many-to-one field="parkingArea" target-entity="App\Domain\ParkingArea\ParkingArea" inversed-by="vehicles">
             <cascade><cascade-remove /></cascade>
             <join-column name="parking_area_id" referenced-column-name="id" on-delete="CASCADE" />
         </many-to-one>
 
+        <many-to-one field="user" target-entity="App\Domain\User\User" inversed-by="vehicles">
+            <cascade><cascade-remove /></cascade>
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <field name="name" column="name" length="255" nullable="false" />
+        <field name="createdAt" column="created_at" type="datetime" />
+        <field name="parkingTime" column="parking_time" type="float" scale="4" precision="2" />
+        
     </entity>
 
 </doctrine-mapping>
