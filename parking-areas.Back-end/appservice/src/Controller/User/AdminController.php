@@ -72,13 +72,12 @@ class AdminController extends AbstractController
                 'name' => $parkingArray['name'],
                 'capacity' => $parkingArray['capacity'],
                 'weekdayRate' => $parkingArray['weekday_rate'],
-                'weekendRate' => $parkingArray['weekend_rate']
+                'weekendRate' => $parkingArray['weekend_rate'],
             ]
         );
 
         return new JsonResponse('Parking Area has been made', Response::HTTP_CREATED);
     }
-
 
     protected function hasParkingAreaVehicles(ParkingArea $parkingArea): array
     {
