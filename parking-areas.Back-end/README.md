@@ -72,6 +72,12 @@ build all kontainers:
 
   ! How you can see, work is much more comfortable and effective
 
+## Design of Parking System
+ <details>
+  <summary><b>Kliknij tutaj:</b> <i>The System of Parking</i> - Design</summary>
+
+   * ![diagram1 local view](./var/images/system_design.jpg)
+  </details>
 
 
 
