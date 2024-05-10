@@ -64,18 +64,18 @@ for Windows 10/11 are under testing and development.
 
 build all kontainers:
 
-  $ make docker-build
-    =>
+  $ make docker-build  
+    =>  
     $ cp ./.docker/.env.example ./.docker/.env && \
     ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=1010 APP_GROUP_ID=1011 APP_USER_NAME=develop docker compose -p   shopb2biteo_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose-php-host.yml build php-host && \
     ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=1010 APP_GROUP_ID=1011 APP_USER_NAME=develop docker compose -p   shopb2biteo_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose.yml -f ./.docker/docker-compose/docker-compose.local.yml build
 
-  $ make docker-up
-    =>
+  $ make docker-up  
+    =>  
     $ ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=1010 APP_GROUP_ID=1011 APP_USER_NAME=develop docker compose -p shopb2biteo_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose.yml -f ./.docker/docker-compose/docker-compose.local.yml up -d 
 
-  $ make docker-test
-    =>
+  $ make docker-test  
+    =>  
     $ bash ./.docker/docker-test.sh
-
+  
   ! How you can see, work is much more comfortable and effective
