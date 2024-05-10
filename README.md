@@ -63,7 +63,7 @@ for Windows 10/11 are under testing and development.
       (w przypadku braku Makefile wykonać komendy =>):
       $ cp .make/.env.example .make/.env && for variable in ; do echo $variable | tee -a .make/.env; done
 
-build all kontainers:
+build all containers:
 
   $ make docker-build  
     =>  
