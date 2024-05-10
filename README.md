@@ -17,8 +17,9 @@
    ## 01. Initial project setup
 
 ### Design of Parking System
+
  <details>
-  <summary><b>Kliknij tutaj:</b> <i>The System of Parking</i> - Design</summary>
+  <summary><b>Click here:</b> <i>The System of Parking</i> - Design.</summary>
 
    * ![diagram1 local view](./var/images/system_design.jpg)
   </details>
@@ -41,7 +42,7 @@
     <li>in production, a container containing source code without any test dependencies is used</li>
     <li>on CI, a container containing source code with test dependencies is used</li>
     <li>locally, a container is used that mounts source code from the local host (including dependencies)</li>
-</ul>
+</ul>  
 
     |*  In this publication I have included only part of the solution that facilitates implementation
     | monitoring systems, metrics modules, scaling the entire system, e.g. using Kubernetes.
@@ -64,18 +65,18 @@ for Windows 10/11 are under testing and development.
 
 build all kontainers:
 
-  $ make docker-build
-    =>
+  $ make docker-build  
+    =>  
     $ cp ./.docker/.env.example ./.docker/.env && \
-    ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=1010 APP_GROUP_ID=1011 APP_USER_NAME=develop docker compose -p   shopb2biteo_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose-php-host.yml build php-host && \
-    ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=1010 APP_GROUP_ID=1011 APP_USER_NAME=develop docker compose -p   shopb2biteo_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose.yml -f ./.docker/docker-compose/docker-compose.local.yml build
+    ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=101 APP_GROUP_ID=111 APP_USER_NAME=develop docker compose -p   parkignArea_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose-php-host.yml build php-host && \
+    ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=101 APP_GROUP_ID=111 APP_USER_NAME=develop docker compose -p   parkignArea_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose.yml -f ./.docker/docker-compose/docker-compose.local.yml build
 
-  $ make docker-up
-    =>
-    $ ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=1010 APP_GROUP_ID=1011 APP_USER_NAME=develop docker compose -p shopb2biteo_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose.yml -f ./.docker/docker-compose/docker-compose.local.yml up -d 
+  $ make docker-up  
+    =>  
+    $ ENV=local TAG=latest DOCKER_REGISTRY=docker.io DOCKER_NAMESPACE=kosowski76 APP_USER_ID=101 APP_GROUP_ID=111 APP_USER_NAME=develop docker compose -p parkignArea_local --env-file ./.docker/.env -f ./.docker/docker-compose/docker-compose.yml -f ./.docker/docker-compose/docker-compose.local.yml up -d 
 
-  $ make docker-test
-    =>
+  $ make docker-test  
+    =>  
     $ bash ./.docker/docker-test.sh
 
   ! How you can see, work is much more comfortable and effective
