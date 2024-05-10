@@ -24,19 +24,18 @@
    * ![diagram1 local view](./var/images/system_design.jpg)
   </details>
 
+
+### Environments and build targets
+
   01. [x] Implement environment on Docker for run Demo
 
-    ### Content of specification:
-
- <b><i>Environments and build targets</i></b>
-
- Final goal is a setup that we can use containers for:
+ Final goal is a setup that can use containers for:
 <ul>
     <li>local development</li>
     <li>in a CI/CD pipeline</li>
     <li>on stage preproduction and production</li>
 </ul>
-     and even though we strive to for a parity between those different environments,
+     and even though strive to for a parity between those different environments,
     there will be differences due to fundamentally different requirements. E.g.
 <ul>
     <li>in production, a container containing source code without any test dependencies is used</li>
@@ -44,8 +43,8 @@
     <li>locally, a container is used that mounts source code from the local host (including dependencies)</li>
 </ul>  
 
-    |*  In this publication I have included only part of the solution that facilitates implementation
-    | monitoring systems, metrics modules, scaling the entire system, e.g. using Kubernetes.
+  In this publication I have included only part of the solution that facilitates implementation
+    monitoring systems, metrics modules, scaling the entire system, e.g. using Kubernetes.
 
  The entire structure is managed in a very easy and flexible way using (self-documenting)
 Makefile scripts.
