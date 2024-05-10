@@ -13,11 +13,19 @@
     <li>Mysql, Nginx, Redis</li>
   </ul>
 
+
    ## 01. Initial project setup
+
+### Design of Parking System
+ <details>
+  <summary><b>Click here:</b> <i>The System of Parking</i> - Design</summary>
+    <br>
+   * ![diagram1 local view](./var/images/system_design.jpg)
+  </details>
 
   01. [x] Implement environment on Docker for run Demo
 
-## Content of specification:
+    ### Content of specification:
 
  <b><i>Environments and build targets</i></b>
 
@@ -71,21 +79,3 @@ build all kontainers:
     $ bash ./.docker/docker-test.sh
 
   ! How you can see, work is much more comfortable and effective
-
-## Design of Parking System
- <details>
-  <summary><b>Kliknij tutaj:</b> <i>The System of Parking</i> - Design</summary>
-
-   * ![diagram1 local view](./var/images/system_design.jpg)
-  </details>
-
-
-
-
-
-
-
-
-
-
-
